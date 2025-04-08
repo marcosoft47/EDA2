@@ -57,7 +57,6 @@ int armazenarSimples(entrada **v, FILE* f){
         printf("%s,%i,%i,%i\n",v[i]->descricao,v[i]->data.dia,v[i]->data.mes,v[i]->data.ano);
         fprintf(f, "%s,%i,%i,%i\n",v[i]->descricao,v[i]->data.dia,v[i]->data.mes,v[i]->data.ano);
     }
-    
     return 1;
 }
 
