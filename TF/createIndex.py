@@ -31,13 +31,16 @@ def gerarMapaDeIndices(img: np.ndarray, listaDeCores: np.ndarray) -> np.ndarray:
     return mapaIndices.reshape(img.shape[0], img.shape[1])
 
 def create(img: np.ndarray, nome: str, npz=True):
+    if img is None:
+        print('Não foi possível abrir a imagem passada!')
+        return
     colorMap = createColorMap(img)
     colorIdx = gerarMapaDeIndices(img, colorMap)
     if npz:
-        np.savez(nome, Map=colorMap, Idx=colorIdx)
+        np.savez(f'npz/{nome}', Map=colorMap, Idx=colorIdx)
     else:
-        np.savetxt(nome+'_color.csv', colorMap, fmt='%d', delimiter=',')
-        np.savetxt(nome+'_index.csv', colorIdx, fmt='%d', delimiter=',')
+        np.savetxt(f'csv/{nome}_color.csv', colorMap, fmt='%d', delimiter=',')
+        np.savetxt(f'csv/{nome}_index.csv', colorIdx, fmt='%d', delimiter=',')
 
 
 if __name__ == '__main__':
